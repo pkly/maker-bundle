@@ -4,7 +4,7 @@ namespace App\Tests;
 
 use App\Entity\Author;
 use App\Entity\Book;
-use App\Form\BookForm;
+use App\Form\BookType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -26,7 +26,7 @@ class GeneratedFormTest extends TypeTestCase
             'author' => 0,
         ];
 
-        $form = $this->factory->create(BookForm::class);
+        $form = $this->factory->create(BookType::class);
         $form->submit($formData);
 
         $object = new Book();

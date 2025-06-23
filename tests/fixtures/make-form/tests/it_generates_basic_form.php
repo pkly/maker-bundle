@@ -2,7 +2,7 @@
 
 namespace App\Tests;
 
-use App\Form\FooBarForm;
+use App\Form\FooBarType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class GeneratedFormTest extends TypeTestCase
@@ -13,7 +13,7 @@ class GeneratedFormTest extends TypeTestCase
             'field_name' => 'field_value',
         ];
 
-        $form = $this->factory->create(FooBarForm::class);
+        $form = $this->factory->create(FooBarType::class);
         $form->submit($formData);
 
         $this->assertTrue($form->isSynchronized());
