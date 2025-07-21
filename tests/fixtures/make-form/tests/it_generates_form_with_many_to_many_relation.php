@@ -4,7 +4,7 @@ namespace App\Tests;
 
 use App\Entity\Library;
 use App\Entity\Book;
-use App\Form\BookForm;
+use App\Form\BookType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -23,7 +23,7 @@ class GeneratedFormTest extends TypeTestCase
      */
     public function testGeneratedFormWithMultipleChoices($formData, $collection)
     {
-        $form = $this->factory->create(BookForm::class);
+        $form = $this->factory->create(BookType::class);
         $form->submit($formData);
 
         $object = new Book();

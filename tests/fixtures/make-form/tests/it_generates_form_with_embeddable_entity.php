@@ -3,7 +3,7 @@
 namespace App\Tests;
 
 use App\Entity\Food;
-use App\Form\FoodForm;
+use App\Form\FoodType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class GeneratedFormTest extends TypeTestCase
@@ -14,7 +14,7 @@ class GeneratedFormTest extends TypeTestCase
             'title' => 'lemon',
         ];
 
-        $form = $this->factory->create(FoodForm::class);
+        $form = $this->factory->create(FoodType::class);
         $form->submit($formData);
 
         $object = new Food();
