@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class LoginTest extends WebTestCase
 {
-    public function testLogin(): void
+    public function testLogin()
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/login');

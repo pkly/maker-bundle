@@ -29,7 +29,7 @@ class SecurityConfigUpdaterTest extends TestCase
     /**
      * @dataProvider getUserClassTests
      */
-    public function testUpdateForUserClass(UserClassConfiguration $userConfig, string $expectedSourceFilename, string $startingSourceFilename = 'simple_security.yaml'): void
+    public function testUpdateForUserClass(UserClassConfiguration $userConfig, string $expectedSourceFilename, string $startingSourceFilename = 'simple_security.yaml')
     {
         $this->createLogger();
 
@@ -104,7 +104,7 @@ class SecurityConfigUpdaterTest extends TestCase
     /**
      * @dataProvider getAuthenticatorTests
      */
-    public function testUpdateForAuthenticator(string $firewallName, $entryPoint, string $expectedSourceFilename, string $startingSourceFilename, bool $logoutSetup, bool $supportRememberMe, bool $alwaysRememberMe): void
+    public function testUpdateForAuthenticator(string $firewallName, $entryPoint, string $expectedSourceFilename, string $startingSourceFilename, bool $logoutSetup, bool $supportRememberMe, bool $alwaysRememberMe)
     {
         $this->createLogger();
 
@@ -199,7 +199,7 @@ class SecurityConfigUpdaterTest extends TestCase
         ];
     }
 
-    public function testUpdateForFormLogin(): void
+    public function testUpdateForFormLogin()
     {
         $this->createLogger();
 
@@ -214,7 +214,7 @@ class SecurityConfigUpdaterTest extends TestCase
         );
     }
 
-    public function testUpdateForJsonLogin(): void
+    public function testUpdateForJsonLogin()
     {
         $this->createLogger();
 
@@ -229,7 +229,7 @@ class SecurityConfigUpdaterTest extends TestCase
         );
     }
 
-    public function testUpdateForLogout(): void
+    public function testUpdateForLogout()
     {
         $this->createLogger();
 

@@ -26,7 +26,7 @@ use Symfony\Bundle\MakerBundle\Test\MakerTestEnvironment;
 class RegexTest extends TestCase
 {
     /** @dataProvider generatedFilesRegexDataProvider */
-    public function testMakerTestEnvironmentGeneratedFilesRegex(string $subjectData, array $expectedResult): void
+    public function testMakerTestEnvironmentGeneratedFilesRegex(string $subjectData, array $expectedResult)
     {
         $result = [];
 
@@ -69,7 +69,7 @@ class RegexTest extends TestCase
     }
 
     /** @dataProvider webhookNameRegexDataProvider */
-    public function testWebhookNameRegex(string $subjectData, bool $expectedResult): void
+    public function testWebhookNameRegex(string $subjectData, bool $expectedResult)
     {
         $result = preg_match(MakeWebhook::WEBHOOK_NAME_PATTERN, $subjectData);
 

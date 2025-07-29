@@ -20,7 +20,7 @@ class GeneratorTest extends TestCase
     /**
      * @dataProvider getClassNameDetailsTests
      */
-    public function testCreateClassNameDetails(string $name, string $prefix, string $suffix, string $expectedFullClassName, string $expectedRelativeClassName): void
+    public function testCreateClassNameDetails(string $name, string $prefix, string $suffix, string $expectedFullClassName, string $expectedRelativeClassName)
     {
         $fileManager = $this->createMock(FileManager::class);
         $fileManager->expects($this->any())

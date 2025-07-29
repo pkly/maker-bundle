@@ -188,7 +188,7 @@ class FileManagerTest extends TestCase
         ];
     }
 
-    public function testWithMakerFileLinkFormatter(): void
+    public function testWithMakerFileLinkFormatter()
     {
         if (getenv('MAKER_DISABLE_FILE_LINKS')) {
             $this->markTestSkipped();

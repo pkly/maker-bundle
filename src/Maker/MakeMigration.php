@@ -119,7 +119,7 @@ final class MakeMigration extends AbstractMaker implements ApplicationAwareMaker
         try {
             $returnCode = $generateMigrationCommand->run($generateMigrationCommandInput, $commandOutput);
 
-            // non-zero code would ideally mean the internal command has already printed an errror
+            // non-zero code would ideally mean the internal command has already printed an error
             // this happens if you "decline" generating a migration when you already
             // have some available
             if (0 !== $returnCode) {

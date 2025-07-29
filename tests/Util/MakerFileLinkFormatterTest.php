@@ -32,7 +32,7 @@ final class MakerFileLinkFormatterTest extends TestCase
     /**
      * @dataProvider provideMakeLinkedPath
      */
-    public function testMakeLinkedPath(bool $withFileLinkFormatter, bool $linkFormatterReturnsLink, string $expectedOutput): void
+    public function testMakeLinkedPath(bool $withFileLinkFormatter, bool $linkFormatterReturnsLink, string $expectedOutput)
     {
         if (getenv('MAKER_DISABLE_FILE_LINKS')) {
             $this->markTestSkipped();

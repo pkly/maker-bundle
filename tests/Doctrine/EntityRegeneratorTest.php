@@ -38,7 +38,7 @@ class EntityRegeneratorTest extends TestCase
     /**
      * @dataProvider getRegenerateEntitiesTests
      */
-    public function testRegenerateEntities(string $expectedDirName, bool $overwrite): void
+    public function testRegenerateEntities(string $expectedDirName, bool $overwrite)
     {
         $kernel = new TestEntityRegeneratorKernel('dev', true);
         $this->doTestRegeneration(

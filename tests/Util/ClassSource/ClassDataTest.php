@@ -18,7 +18,7 @@ use Symfony\Bundle\MakerBundle\Util\ClassSource\Model\ClassData;
 
 class ClassDataTest extends TestCase
 {
-    public function testStaticConstructor(): void
+    public function testStaticConstructor()
     {
         $meta = ClassData::create(MakerBundle::class);
 
@@ -30,14 +30,14 @@ class ClassDataTest extends TestCase
         self::assertSame('App\Symfony\Bundle\MakerBundle\MakerBundle', $meta->getFullClassName());
     }
 
-    public function testGetClassDeclaration(): void
+    public function testGetClassDeclaration()
     {
         $meta = ClassData::create(MakerBundle::class);
 
         self::assertSame('final class MakerBundle', $meta->getClassDeclaration());
     }
 
-    public function testIsFinal(): void
+    public function testIsFinal()
     {
         $meta = ClassData::create(MakerBundle::class);
 
@@ -49,7 +49,7 @@ class ClassDataTest extends TestCase
         self::assertSame('class MakerBundle', $meta->getClassDeclaration());
     }
 
-    public function testGetClassDeclarationWithExtends(): void
+    public function testGetClassDeclarationWithExtends()
     {
         $meta = ClassData::create(class: MakerBundle::class, extendsClass: MakerTestKernel::class);
 
@@ -57,7 +57,7 @@ class ClassDataTest extends TestCase
     }
 
     /** @dataProvider suffixDataProvider */
-    public function testSuffix(?string $suffix, string $expectedResult): void
+    public function testSuffix(?string $suffix, string $expectedResult)
     {
         $data = ClassData::create(class: MakerBundle::class, suffix: $suffix);
 
@@ -72,7 +72,7 @@ class ClassDataTest extends TestCase
     }
 
     /** @dataProvider namespaceDataProvider */
-    public function testNamespace(string $class, ?string $rootNamespace, string $expectedNamespace, string $expectedFullClassName): void
+    public function testNamespace(string $class, ?string $rootNamespace, string $expectedNamespace, string $expectedFullClassName)
     {
         $class = ClassData::create($class);
 
@@ -92,7 +92,7 @@ class ClassDataTest extends TestCase
         yield ['Controller\MyController', 'Maker', 'Maker\Controller', 'Maker\Controller\MyController'];
     }
 
-    public function testGetClassName(): void
+    public function testGetClassName()
     {
         $class = ClassData::create(class: 'Controller\\Foo', suffix: 'Controller');
         self::assertSame('FooController', $class->getClassName());
@@ -102,7 +102,7 @@ class ClassDataTest extends TestCase
         self::assertSame('App\Controller\FooController', $class->getFullClassName());
     }
 
-    public function testGetClassNameRelativeNamespace(): void
+    public function testGetClassNameRelativeNamespace()
     {
         $class = ClassData::create(class: 'Controller\\Admin\\Foo', suffix: 'Controller');
         self::assertSame('FooController', $class->getClassName());
@@ -112,7 +112,7 @@ class ClassDataTest extends TestCase
         self::assertSame('App\Controller\Admin\FooController', $class->getFullClassName());
     }
 
-    public function testGetClassNameWithAbsoluteNamespace(): void
+    public function testGetClassNameWithAbsoluteNamespace()
     {
         $class = ClassData::create(class: '\\Foo\\Bar\\Admin\\Baz', suffix: 'Controller');
         self::assertSame('BazController', $class->getClassName());
@@ -121,7 +121,7 @@ class ClassDataTest extends TestCase
     }
 
     /** @dataProvider fullClassNameProvider */
-    public function testGetFullClassName(string $class, ?string $rootNamespace, bool $withoutRootNamespace, bool $withoutSuffix, string $expectedFullClassName): void
+    public function testGetFullClassName(string $class, ?string $rootNamespace, bool $withoutRootNamespace, bool $withoutSuffix, string $expectedFullClassName)
     {
         $class = ClassData::create($class, suffix: 'Controller');
 

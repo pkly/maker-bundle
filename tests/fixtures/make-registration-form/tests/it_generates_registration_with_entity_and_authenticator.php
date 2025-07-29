@@ -69,7 +69,7 @@ class RegistrationFormTest extends WebTestCase
         );
     }
 
-    public function testVerifiedPropertyNotAddedToUserEntity(): void
+    public function testVerifiedPropertyNotAddedToUserEntity()
     {
         self::assertFalse(method_exists(User::class, 'isVerified'));
         self::assertFalse(property_exists(User::class, 'verified'));

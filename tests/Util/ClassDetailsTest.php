@@ -20,7 +20,7 @@ use Symfony\Bundle\MakerBundle\Util\ClassDetails;
  */
 final class ClassDetailsTest extends TestCase
 {
-    public function testHasAttribute(): void
+    public function testHasAttribute()
     {
         self::assertTrue((new ClassDetails(FixtureClassDetails::class))->hasAttribute(UniqueEntity::class));
 
