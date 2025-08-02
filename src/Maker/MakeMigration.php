@@ -74,6 +74,7 @@ final class MakeMigration extends AbstractMaker implements ApplicationAwareMaker
 
         $command
             ->addOption('formatted', null, InputOption::VALUE_NONE, 'Format the generated SQL')
+            ->addOption('nowdoc', null, InputOption::VALUE_NONE, 'Use nowdoc format for generated SQL')
             ->addOption('configuration', null, InputOption::VALUE_OPTIONAL, 'The path of doctrine configuration file')
         ;
     }
@@ -97,6 +98,10 @@ final class MakeMigration extends AbstractMaker implements ApplicationAwareMaker
 
         if ($input->getOption('formatted')) {
             $options[] = '--formatted';
+        }
+
+        if ($input->getOption('nowdoc')) {
+            $options[] = '--nowdoc';
         }
 
         if (null !== $configuration = $input->getOption('configuration')) {
