@@ -246,7 +246,7 @@ final class MakerTestEnvironment
         $flexProjectDir = \sprintf('flex_project%s', $targetVersion);
 
         MakerTestProcess::create(
-            \sprintf('composer create-project symfony/skeleton%s %s --prefer-dist --no-progress', $versionString, $flexProjectDir),
+            \sprintf('composer create-project symfony/skeleton%s %s --prefer-dist --no-progress --keep-vcs', $versionString, $flexProjectDir),
             $this->cachePath
         )->run();
 
@@ -260,7 +260,7 @@ final class MakerTestEnvironment
         }
 
         // fetch a few packages needed for testing
-        MakerTestProcess::create('composer require phpunit browser-kit symfony/css-selector --prefer-dist --no-progress --no-suggest', $this->flexPath)
+        MakerTestProcess::create('composer require phpunit:1.1.* browser-kit symfony/css-selector --prefer-dist --no-progress --no-suggest', $this->flexPath)
                         ->run();
 
         if ('\\' !== \DIRECTORY_SEPARATOR) {
