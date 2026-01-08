@@ -41,8 +41,8 @@ class MakeControllerTest extends MakerTestCase
 
                 // Ensure the generated controller matches what we expect
                 self::assertSame(
-                    expected: file_get_contents(\dirname(__DIR__).'/fixtures/make-controller/expected/FinalController.php'),
-                    actual: file_get_contents($runner->getPath('src/Controller/FooBarController.php'))
+                    file_get_contents(\dirname(__DIR__).'/fixtures/make-controller/expected/FinalController.php'),
+                    file_get_contents($runner->getPath('src/Controller/FooBarController.php'))
                 );
             }),
         ];
@@ -92,8 +92,8 @@ class MakeControllerTest extends MakerTestCase
 
                 // Ensure the generated controller matches what we expect
                 self::assertSame(
-                    expected: file_get_contents(\dirname(__DIR__).'/fixtures/make-controller/expected/FinalControllerWithTemplate.php'),
-                    actual: file_get_contents($runner->getPath('src/Controller/FooTwigController.php'))
+                    file_get_contents(\dirname(__DIR__).'/fixtures/make-controller/expected/FinalControllerWithTemplate.php'),
+                    file_get_contents($runner->getPath('src/Controller/FooTwigController.php'))
                 );
             }),
         ];
