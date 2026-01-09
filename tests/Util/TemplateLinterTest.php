@@ -42,9 +42,9 @@ final class TemplateLinterTest extends TestCase
     {
         $this->markTestSkippedOnWindows();
 
-        $fixerPath = \sprintf('%s/src/Resources/bin/php-cs-fixer-v%s.phar', \dirname(__DIR__, 2), TemplateLinter::BUNDLED_PHP_CS_FIXER_VERSION);
+        $fixerPath = \sprintf('%s/src/Resources/bin/php-cs-fixer.phar', \dirname(__DIR__, 2));
 
-        $process = Process::fromShellCommandline(\sprintf('%s -V', $fixerPath));
+        $process = Process::fromShellCommandline(\sprintf('PHP_CS_FIXER_IGNORE_ENV=1 %s -V', $fixerPath));
 
         $process->run();
 
