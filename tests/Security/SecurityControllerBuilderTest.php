@@ -19,7 +19,7 @@ class SecurityControllerBuilderTest extends TestCase
 {
     private string $expectedBasePath = __DIR__.'/fixtures/expected';
 
-    public function testLoginMethod(): void
+    public function testLoginMethod()
     {
         $this->runMethodTest(
             'addLoginMethod',
@@ -27,7 +27,7 @@ class SecurityControllerBuilderTest extends TestCase
         );
     }
 
-    public function testLogoutMethod(): void
+    public function testLogoutMethod()
     {
         $this->runMethodTest(
             'addLogoutMethod',
@@ -35,7 +35,7 @@ class SecurityControllerBuilderTest extends TestCase
         );
     }
 
-    public function testLoginAndLogoutMethod(): void
+    public function testLoginAndLogoutMethod()
     {
         $builder = new SecurityControllerBuilder();
         $csm = $this->getClassSourceManipulator();

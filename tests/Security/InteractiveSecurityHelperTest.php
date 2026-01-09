@@ -209,7 +209,7 @@ class InteractiveSecurityHelperTest extends TestCase
     }
 
     /** @dataProvider authenticatorClassProvider */
-    public function testGetAuthenticatorsFromConfig(array $firewalls, array $expectedResults): void
+    public function testGetAuthenticatorsFromConfig(array $firewalls, array $expectedResults)
     {
         $helper = new InteractiveSecurityHelper();
         $result = $helper->getAuthenticatorsFromConfig($firewalls);

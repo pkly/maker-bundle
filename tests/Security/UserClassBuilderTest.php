@@ -23,7 +23,7 @@ class UserClassBuilderTest extends TestCase
     /**
      * @dataProvider getUserInterfaceTests
      */
-    public function testAddUserInterfaceImplementation(UserClassConfiguration $userClassConfig, string $expectedFilename): void
+    public function testAddUserInterfaceImplementation(UserClassConfiguration $userClassConfig, string $expectedFilename)
     {
         $manipulator = $this->getClassSourceManipulator($userClassConfig);
 

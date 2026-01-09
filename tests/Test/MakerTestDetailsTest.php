@@ -25,7 +25,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class MakerTestDetailsTest extends TestCase
 {
-    public function testAddExtraDependencies(): void
+    public function testAddExtraDependencies()
     {
         $details = new MakerTestDetails($this->createMock(MakerInterface::class));
 
@@ -38,7 +38,7 @@ class MakerTestDetailsTest extends TestCase
         self::assertSame(['twig', 'ux', 'mercure'], $details->getExtraDependencies());
     }
 
-    public function testAddRequiredPackageVersions(): void
+    public function testAddRequiredPackageVersions()
     {
         $details = new MakerTestDetails($this->createMock(MakerInterface::class));
 
@@ -53,7 +53,7 @@ class MakerTestDetailsTest extends TestCase
         ], $details->getRequiredPackageVersions());
     }
 
-    public function testGetDependencies(): void
+    public function testGetDependencies()
     {
         $details = new MakerTestDetails(new TestMakerFixture());
 

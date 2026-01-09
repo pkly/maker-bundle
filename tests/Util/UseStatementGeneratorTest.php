@@ -20,7 +20,7 @@ use Symfony\Bundle\MakerBundle\Util\UseStatementGenerator;
  */
 class UseStatementGeneratorTest extends TestCase
 {
-    public function testUseStatements(): void
+    public function testUseStatements()
     {
         $unsorted = new UseStatementGenerator([
             Sorter::class,
@@ -39,7 +39,7 @@ class UseStatementGeneratorTest extends TestCase
         self::assertSame($expected, (string) $unsorted);
     }
 
-    public function testComplexStatements(): void
+    public function testComplexStatements()
     {
         $unsorted = new UseStatementGenerator([
             \Symfony\Bundle\FrameworkBundle\Controller\AbstractController::class,
@@ -74,7 +74,7 @@ class UseStatementGeneratorTest extends TestCase
         self::assertSame($expected, (string) $unsorted);
     }
 
-    public function testUseStatementsWithAliases(): void
+    public function testUseStatementsWithAliases()
     {
         $unsorted = new UseStatementGenerator([
             \Symfony\UX\Turbo\Attribute\Broadcast::class,
@@ -91,7 +91,7 @@ class UseStatementGeneratorTest extends TestCase
         self::assertSame($expected, (string) $unsorted);
     }
 
-    public function testUseStatementsWithDuplicates(): void
+    public function testUseStatementsWithDuplicates()
     {
         $unsorted = new UseStatementGenerator([
             \Symfony\UX\Turbo\Attribute\Broadcast::class,

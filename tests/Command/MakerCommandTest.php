@@ -23,7 +23,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class MakerCommandTest extends TestCase
 {
-    public function testExceptionOnMissingDependencies(): void
+    public function testExceptionOnMissingDependencies()
     {
         $this->expectException(RuntimeCommandException::class);
         // @phpstan-ignore function.alreadyNarrowedType
@@ -48,7 +48,7 @@ class MakerCommandTest extends TestCase
         $tester->execute([]);
     }
 
-    public function testExceptionOnUnknownRootNamespace(): void
+    public function testExceptionOnUnknownRootNamespace()
     {
         $maker = $this->createMock(MakerInterface::class);
 

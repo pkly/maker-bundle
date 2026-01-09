@@ -19,12 +19,12 @@ use Symfony\Bundle\MakerBundle\Util\ComposeFileManipulator;
  */
 class ComposeFileManipulatorTest extends TestCase
 {
-    public function testComposeFileVersion(): void
+    public function testComposeFileVersion()
     {
         self::assertSame('3.7', ComposeFileManipulator::COMPOSE_FILE_VERSION);
     }
 
-    public function testGetComposeDataReturnsEmptyComposeFileOnEmpty(): void
+    public function testGetComposeDataReturnsEmptyComposeFileOnEmpty()
     {
         $manipulator = new ComposeFileManipulator('');
 
@@ -36,7 +36,7 @@ class ComposeFileManipulatorTest extends TestCase
         self::assertSame($expected, $manipulator->getComposeData());
     }
 
-    public function testServiceExists(): void
+    public function testServiceExists()
     {
         $composeFile = <<< 'EOT'
             version: '3.7'
@@ -49,7 +49,7 @@ class ComposeFileManipulatorTest extends TestCase
         self::assertFalse($manipulator->serviceExists('redis'));
     }
 
-    public function testAddDockerService(): void
+    public function testAddDockerService()
     {
         $manipulator = new ComposeFileManipulator('');
         $manipulator->addDockerService('redis', ['coming' => 'soon']);
@@ -66,7 +66,7 @@ class ComposeFileManipulatorTest extends TestCase
         self::assertSame($expected, $manipulator->getComposeData());
     }
 
-    public function testRemoveDockerService(): void
+    public function testRemoveDockerService()
     {
         $composeFile = <<< 'EOT'
             version: '3.7'
@@ -87,7 +87,7 @@ class ComposeFileManipulatorTest extends TestCase
         self::assertSame($expected, $manipulator->getComposeData());
     }
 
-    public function testExposePorts(): void
+    public function testExposePorts()
     {
         $composeFile = <<< 'EOT'
             version: '3.7'
@@ -113,7 +113,7 @@ class ComposeFileManipulatorTest extends TestCase
         self::assertSame($expected, $manipulator->getComposeData());
     }
 
-    public function testAddVolume(): void
+    public function testAddVolume()
     {
         $composeFile = <<< 'EOT'
             version: '3.7'
