@@ -26,6 +26,7 @@ class MakerCommandTest extends TestCase
     public function testExceptionOnMissingDependencies(): void
     {
         $this->expectException(RuntimeCommandException::class);
+        // @phpstan-ignore function.alreadyNarrowedType
         if (method_exists($this, 'expectExceptionMessageMatches')) {
             $this->expectExceptionMessageMatches('/composer require foo-package/');
         }

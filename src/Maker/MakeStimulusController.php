@@ -22,7 +22,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Question\Question;
 use Symfony\UX\StimulusBundle\StimulusBundle;
-use Symfony\WebpackEncoreBundle\WebpackEncoreBundle;
 
 /**
  * @author Abdelilah Jabri <jbrabdelilah@gmail.com>
@@ -339,17 +338,7 @@ final class MakeStimulusController extends AbstractMaker
 
     public function configureDependencies(DependencyBuilder $dependencies): void
     {
-        // lower than 8.1, allow WebpackEncoreBundle
-        if (\PHP_VERSION_ID < 80100) {
-            $dependencies->addClassDependency(
-                WebpackEncoreBundle::class,
-                'symfony/webpack-encore-bundle'
-            );
-
-            return;
-        }
-
-        // else: encourage StimulusBundle by requiring it
+        // Encourage StimulusBundle by requiring it
         $dependencies->addClassDependency(
             StimulusBundle::class,
             'symfony/stimulus-bundle'

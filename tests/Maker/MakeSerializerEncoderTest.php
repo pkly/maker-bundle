@@ -39,8 +39,8 @@ class MakeSerializerEncoderTest extends MakerTestCase
                 );
 
                 self::assertStringContainsString(
-                    needle: 'public function decode(string $data, string $format, array $context = []): mixed',
-                    haystack: file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
+                    'public function decode(string $data, string $format, array $context = []): mixed',
+                    file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
                 );
             }),
         ];
@@ -61,8 +61,8 @@ class MakeSerializerEncoderTest extends MakerTestCase
                 );
 
                 self::assertStringNotContainsString(
-                    needle: 'public function decode(string $data, string $format, array $context = []): mixed',
-                    haystack: file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
+                    'public function decode(string $data, string $format, array $context = []): mixed',
+                    file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
                 );
             }),
         ];
