@@ -51,7 +51,7 @@ namespace <?= $namespace ?>;
 <?php endforeach; ?>
         ]);
 
-        self::assertResponseRedirects($this->path);
+        self::assertResponseRedirects('<?= $route_path; ?>');
 
         self::assertSame(1, $this-><?= lcfirst($entity_var_singular); ?>Repository->count([]));
     }
@@ -94,7 +94,7 @@ namespace <?= $namespace ?>;
 <?php endforeach; ?>
         ]);
 
-        self::assertResponseRedirects('<?= $route_path; ?>/');
+        self::assertResponseRedirects('<?= $route_path; ?>');
 
         $fixture = $this-><?= lcfirst($entity_var_singular); ?>Repository->findAll();
 
@@ -117,7 +117,7 @@ namespace <?= $namespace ?>;
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
         $this->client->submitForm('Delete');
 
-        self::assertResponseRedirects('<?= $route_path; ?>/');
+        self::assertResponseRedirects('<?= $route_path; ?>');
         self::assertSame(0, $this-><?= lcfirst($entity_var_singular); ?>Repository->count([]));
     }
 }
