@@ -61,7 +61,7 @@ namespace <?= $namespace ?>;
         $this->markTestIncomplete();
         $fixture = new <?= $entity_class_name; ?>();
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
-        $fixture->set<?= ucfirst($form_field); ?>('My Title');
+        $fixture->set<?= Str::asCamelCase($form_field); ?>('My Title');
 <?php endforeach; ?>
 
         $this->manager->persist($fixture);
@@ -80,7 +80,7 @@ namespace <?= $namespace ?>;
         $this->markTestIncomplete();
         $fixture = new <?= $entity_class_name; ?>();
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
-        $fixture->set<?= ucfirst($form_field); ?>('Value');
+        $fixture->set<?= Str::asCamelCase($form_field); ?>('Value');
 <?php endforeach; ?>
 
         $this->manager->persist($fixture);
@@ -99,7 +99,7 @@ namespace <?= $namespace ?>;
         $fixture = $this-><?= lcfirst($entity_var_singular); ?>Repository->findAll();
 
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
-        self::assertSame('Something New', $fixture[0]->get<?= ucfirst($form_field); ?>());
+        self::assertSame('Something New', $fixture[0]->get<?= Str::asCamelCase($form_field); ?>());
 <?php endforeach; ?>
     }
 
@@ -108,7 +108,7 @@ namespace <?= $namespace ?>;
         $this->markTestIncomplete();
         $fixture = new <?= $entity_class_name; ?>();
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
-        $fixture->set<?= ucfirst($form_field); ?>('Value');
+        $fixture->set<?= Str::asCamelCase($form_field); ?>('Value');
 <?php endforeach; ?>
 
         $this->manager->persist($fixture);
