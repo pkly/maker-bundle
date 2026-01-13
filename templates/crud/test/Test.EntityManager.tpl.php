@@ -40,7 +40,6 @@ namespace <?= $namespace ?>;
 
     public function testNew(): void
     {
-        $this->markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
@@ -54,11 +53,12 @@ namespace <?= $namespace ?>;
         self::assertResponseRedirects('<?= $route_path; ?>');
 
         self::assertSame(1, $this-><?= lcfirst($entity_var_singular); ?>Repository->count([]));
+
+        $this->markTestIncomplete('This test was generated');
     }
 
     public function testShow(): void
     {
-        $this->markTestIncomplete();
         $fixture = new <?= $entity_class_name; ?>();
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
         $fixture->set<?= Str::asCamelCase($form_field); ?>('My Title');
@@ -73,11 +73,11 @@ namespace <?= $namespace ?>;
         self::assertPageTitleContains('<?= ucfirst($entity_var_singular); ?>');
 
         // Use assertions to check that the properties are properly displayed.
+        $this->markTestIncomplete('This test was generated');
     }
 
     public function testEdit(): void
     {
-        $this->markTestIncomplete();
         $fixture = new <?= $entity_class_name; ?>();
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
         $fixture->set<?= Str::asCamelCase($form_field); ?>('Value');
@@ -101,11 +101,12 @@ namespace <?= $namespace ?>;
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
         self::assertSame('Something New', $fixture[0]->get<?= Str::asCamelCase($form_field); ?>());
 <?php endforeach; ?>
+
+        $this->markTestIncomplete('This test was generated');
     }
 
     public function testRemove(): void
     {
-        $this->markTestIncomplete();
         $fixture = new <?= $entity_class_name; ?>();
 <?php foreach ($form_fields as $form_field => $typeOptions): ?>
         $fixture->set<?= Str::asCamelCase($form_field); ?>('Value');
@@ -119,5 +120,7 @@ namespace <?= $namespace ?>;
 
         self::assertResponseRedirects('<?= $route_path; ?>');
         self::assertSame(0, $this-><?= lcfirst($entity_var_singular); ?>Repository->count([]));
+
+        $this->markTestIncomplete('This test was generated');
     }
 }
