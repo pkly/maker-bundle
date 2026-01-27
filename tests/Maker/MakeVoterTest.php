@@ -26,7 +26,7 @@ class MakeVoterTest extends MakerTestCase
     public function getTestDetails(): \Generator
     {
         yield 'it_makes_voter' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // voter class name
@@ -42,7 +42,7 @@ class MakeVoterTest extends MakerTestCase
         ];
 
         yield 'it_makes_voter_not_final' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->writeFile(
                     'config/packages/dev/maker.yaml',
                     Yaml::dump(['when@dev' => ['maker' => ['generate_final_classes' => false]]])

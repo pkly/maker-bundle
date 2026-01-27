@@ -250,7 +250,7 @@ class SecurityConfigUpdaterTest extends TestCase
             return;
         }
 
-        $this->ysmLogger = new Logger(LogLevel::DEBUG, 'php://stdout', function (string $level, string $message, array $context) {
+        $this->ysmLogger = new Logger(LogLevel::DEBUG, 'php://stdout', static function (string $level, string $message, array $context) {
             $maxLen = max(array_map('strlen', array_keys($context)));
 
             foreach ($context as $key => $val) {

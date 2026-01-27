@@ -168,7 +168,7 @@ final class MakerTestEnvironment
                     ;
 
                     if (!$composerProcess->isSuccessful()) {
-                        throw new \Exception(\sprintf('Error running command: composer require %s -v. Output: "%s". Error: "%s"', implode(' ', $dependencies), $composerProcess->getOutput(), $composerProcess->getErrorOutput()));
+                        throw new \Exception(\sprintf('Error running command: composer require "%s" -v. Output: "%s". Error: "%s"', implode(' ', $dependencies), $composerProcess->getOutput(), $composerProcess->getErrorOutput()));
                     }
                 }
 
@@ -345,7 +345,7 @@ final class MakerTestEnvironment
             // start the command with some input
             $inputStream->write(current($userInputs)."\n");
 
-            $inputStream->onEmpty(function () use ($inputStream, &$userInputs) {
+            $inputStream->onEmpty(static function () use ($inputStream, &$userInputs) {
                 $nextInput = next($userInputs);
                 if (false === $nextInput) {
                     $inputStream->close();

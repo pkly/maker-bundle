@@ -159,7 +159,7 @@ final class MakeStimulusController extends AbstractMaker
             \sprintf('- Open <info>%s</info> and add the code you need', $filePath),
             '- Use the controller in your templates:',
             ...array_map(
-                fn (string $line): string => "    $line",
+                static fn (string $line): string => "    $line",
                 explode("\n", $this->generateUsageExample($controllerName, $targetArgs, $valuesArg, $classesArgs)),
             ),
             'Find the documentation at <fg=yellow>https://symfony.com/bundles/StimulusBundle</>',
@@ -175,7 +175,7 @@ final class MakeStimulusController extends AbstractMaker
             $questionText = 'Add another target? Enter the target name (or press <return> to stop adding targets)';
         }
 
-        $targetName = $io->ask($questionText, validator: function (?string $name) use ($targets) {
+        $targetName = $io->ask($questionText, validator: static function (?string $name) use ($targets) {
             if (\in_array($name, $targets)) {
                 throw new \InvalidArgumentException(\sprintf('The "%s" target already exists.', $name));
             }
@@ -199,7 +199,7 @@ final class MakeStimulusController extends AbstractMaker
             $questionText = 'Add another value? Enter the value name (or press <return> to stop adding values)';
         }
 
-        $valueName = $io->ask($questionText, null, function ($name) use ($values) {
+        $valueName = $io->ask($questionText, null, static function ($name) use ($values) {
             if (\array_key_exists($name, $values)) {
                 throw new \InvalidArgumentException(\sprintf('The "%s" value already exists.', $name));
             }
@@ -258,7 +258,7 @@ final class MakeStimulusController extends AbstractMaker
             $questionText = 'Add another class? Enter the class name (or press <return> to stop adding classes)';
         }
 
-        $className = $io->ask($questionText, validator: function (?string $name) use ($classes) {
+        $className = $io->ask($questionText, validator: static function (?string $name) use ($classes) {
             if (str_contains($name, ' ')) {
                 throw new \InvalidArgumentException('Class name cannot contain spaces.');
             }
@@ -298,7 +298,7 @@ final class MakeStimulusController extends AbstractMaker
      */
     private function generateUsageExample(string $name, array $targets, array $values, array $classes): string
     {
-        $slugify = fn (string $name) => str_replace('_', '-', Str::asSnakeCase($name));
+        $slugify = static fn (string $name) => str_replace('_', '-', Str::asSnakeCase($name));
         $controller = $slugify($name);
 
         $htmlTargets = [];

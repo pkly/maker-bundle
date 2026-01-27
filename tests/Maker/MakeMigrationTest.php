@@ -32,7 +32,7 @@ class MakeMigrationTest extends MakerTestCase
             // only requires doctrine/dbal. But we're testing with the ORM,
             // so let's install it
             ->addExtraDependencies('doctrine/orm')
-            ->preRun(function (MakerTestRunner $runner) {
+            ->preRun(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-migration/SpicyFood.php',
                     'src/Entity/SpicyFood.php'

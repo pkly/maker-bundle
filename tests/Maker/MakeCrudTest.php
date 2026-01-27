@@ -145,7 +145,7 @@ class MakeCrudTest extends MakerTestCase
                 );
 
                 // Symfony 6.2 sets the path and namespace for router resources
-                $runner->modifyYamlFile('config/routes.yaml', function (array $config) {
+                $runner->modifyYamlFile('config/routes.yaml', static function (array $config) {
                     if (!isset($config['controllers']['resource']['namespace'])) {
                         return $config;
                     }

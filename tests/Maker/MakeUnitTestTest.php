@@ -28,7 +28,7 @@ class MakeUnitTestTest extends MakerTestCase
     public function getTestDetails(): \Generator
     {
         yield 'it_makes_unit_test' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // class name

@@ -139,7 +139,7 @@ class MakeFormLoginTest extends MakerTestCase
         $runner->renderTemplateFile($fixturePath.'/LoginTest.php', 'tests/LoginTest.php', []);
 
         // plaintext password: needed for entities, simplifies overall
-        $runner->modifyYamlFile('config/packages/security.yaml', function (array $config) {
+        $runner->modifyYamlFile('config/packages/security.yaml', static function (array $config) {
             if (isset($config['when@test']['security']['password_hashers'])) {
                 $config['when@test']['security']['password_hashers'] = [PasswordAuthenticatedUserInterface::class => 'plaintext'];
 

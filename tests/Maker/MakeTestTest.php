@@ -26,7 +26,7 @@ class MakeTestTest extends MakerTestCase
     public function getTestDetails(): \Generator
     {
         yield 'it_makes_TestCase_type' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // type
@@ -41,7 +41,7 @@ class MakeTestTest extends MakerTestCase
         ];
 
         yield 'it_makes_KernelTestCase_type' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-test/basic_setup',
                     ''
@@ -61,7 +61,7 @@ class MakeTestTest extends MakerTestCase
         ];
 
         yield 'it_makes_WebTestCase_type' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-test/basic_setup',
                     ''
@@ -82,7 +82,7 @@ class MakeTestTest extends MakerTestCase
 
         yield 'it_makes_PantherTestCase_type' => [$this->getPantherTest()
             ->addExtraDependencies('panther')
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-test/basic_setup',
                     ''

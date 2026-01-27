@@ -100,7 +100,7 @@ class YamlSourceManipulatorTest extends TestCase
 
     private function createLogger(): Logger
     {
-        return new Logger(LogLevel::DEBUG, 'php://stdout', function (string $level, string $message, array $context) {
+        return new Logger(LogLevel::DEBUG, 'php://stdout', static function (string $level, string $message, array $context) {
             $maxLen = max(array_map('strlen', array_keys($context)));
 
             foreach ($context as $key => $val) {

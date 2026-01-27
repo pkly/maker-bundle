@@ -87,7 +87,7 @@ class MakeResetPasswordTest extends MakerTestCase
             ->addExtraDependencies('symfony/mailer', 'symfony/http-client')
             // @legacy - drop skipped versions when PHP 8.1 is no longer supported.
             ->setSkippedPhpVersions(80100, 80109)
-            ->preRun(function (MakerTestRunner $runner) {
+            ->preRun(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-reset-password/src/Controller/FixtureController.php',
                     'src/Controller/FixtureController.php'
@@ -303,7 +303,7 @@ class MakeResetPasswordTest extends MakerTestCase
             // @legacy - drop skipped versions when PHP 8.1 is no longer supported.
             ->setSkippedPhpVersions(80100, 80109)
             ->run(function (MakerTestRunner $runner) {
-                $runner->modifyYamlFile('config/packages/reset_password.yaml', function (array $config) {
+                $runner->modifyYamlFile('config/packages/reset_password.yaml', static function (array $config) {
                     $config['symfonycasts_reset_password']['lifetime'] = 9999;
 
                     return $config;
@@ -333,7 +333,7 @@ class MakeResetPasswordTest extends MakerTestCase
             ->run(function (MakerTestRunner $runner) {
                 $this->makeUser($runner, 'emailAddress', 'UserCustom', false);
 
-                $runner->manipulateClass('src/Entity/UserCustom.php', function (ClassSourceManipulator $manipulator) {
+                $runner->manipulateClass('src/Entity/UserCustom.php', static function (ClassSourceManipulator $manipulator) {
                     $manipulator->addSetter('myPassword', 'string', true);
                 });
 
