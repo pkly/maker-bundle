@@ -38,7 +38,7 @@ final class MakerTestEnvironment
     private function __construct(
         private MakerTestDetails $testDetails,
     ) {
-        $this->isWindows = str_contains(strtolower(\PHP_OS), 'win');
+        $this->isWindows = '\\' === \DIRECTORY_SEPARATOR;
 
         $this->fs = new Filesystem();
         $this->rootPath = realpath(__DIR__.'/../../');
@@ -151,7 +151,7 @@ final class MakerTestEnvironment
             try {
                 // let's do some magic here git is faster than copy
                 MakerTestProcess::create(
-                    '\\' === \DIRECTORY_SEPARATOR ? 'git clone %FLEX_PATH% %APP_PATH%' : 'git clone "$FLEX_PATH" "$APP_PATH"',
+                    $this->isWindows ? 'git clone %FLEX_PATH% %APP_PATH%' : 'git clone "$FLEX_PATH" "$APP_PATH"',
                     \dirname($this->flexPath),
                     [
                         'FLEX_PATH' => $this->flexPath,
@@ -269,7 +269,7 @@ final class MakerTestEnvironment
         MakerTestProcess::create('composer require phpunit:1.1.* browser-kit symfony/css-selector --prefer-dist --no-progress --no-suggest', $this->flexPath)
                         ->run();
 
-        if ('\\' !== \DIRECTORY_SEPARATOR) {
+        if (!$this->isWindows) {
             $this->fs->remove($this->flexPath.'/vendor/symfony/phpunit-bridge');
 
             $this->fs->symlink($rootPath.'/vendor/symfony/phpunit-bridge', $this->flexPath.'/vendor/symfony/phpunit-bridge');
