@@ -138,7 +138,13 @@ final class MakerTestEnvironment
         }
 
         if (!$this->fs->exists($this->flexPath)) {
-            $this->buildFlexSkeleton();
+            try {
+                $this->buildFlexSkeleton();
+            } catch (\Exception $e) {
+                $this->fs->remove($this->flexPath);
+
+                throw $e;
+            }
         }
 
         if (!$this->fs->exists($this->path)) {
