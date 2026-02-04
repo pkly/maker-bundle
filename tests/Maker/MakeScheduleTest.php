@@ -60,7 +60,7 @@ class MakeScheduleTest extends MakerTestCase
         ];
 
         yield 'it_generates_a_schedule_select_empty' => [$this->createMakerTest()
-            ->preRun(function (MakerTestRunner $runner) {
+            ->preRun(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-schedule/standard_setup',
                     ''
@@ -83,7 +83,7 @@ class MakeScheduleTest extends MakerTestCase
         ];
 
         yield 'it_generates_a_schedule_select_existing_message' => [$this->createMakerTest()
-            ->preRun(function (MakerTestRunner $runner) {
+            ->preRun(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-schedule/standard_setup',
                     ''

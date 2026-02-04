@@ -30,7 +30,7 @@ class MakeFunctionalTestTest extends MakerTestCase
     {
         yield 'it_generates_test_with_panther' => [$this->getPantherTest()
             ->addExtraDependencies('panther')
-            ->run(function (MakerTestRunner $runner) {
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-functional/MainController.php',
                     'src/Controller/MainController.php'

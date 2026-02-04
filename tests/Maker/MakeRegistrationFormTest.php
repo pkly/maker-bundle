@@ -27,7 +27,7 @@ class MakeRegistrationFormTest extends MakerTestCase
     private function createRegistrationFormTest(): MakerTestDetails
     {
         return $this->createMakerTest()
-            ->preRun(function (MakerTestRunner $runner) {
+            ->preRun(static function (MakerTestRunner $runner) {
                 $runner->copy(
                     'make-registration-form/standard_setup',
                     ''
@@ -69,7 +69,7 @@ class MakeRegistrationFormTest extends MakerTestCase
 
                 $this->makeUser($runner);
 
-                $runner->modifyYamlFile('config/packages/security.yaml', function (array $data) {
+                $runner->modifyYamlFile('config/packages/security.yaml', static function (array $data) {
                     $data['security']['firewalls']['main']['form_login']['login_path'] = 'app_login';
                     $data['security']['firewalls']['main']['form_login']['check_path'] = 'app_login';
 
@@ -99,7 +99,7 @@ class MakeRegistrationFormTest extends MakerTestCase
             ->run(function (MakerTestRunner $runner) {
                 $this->makeUser($runner);
 
-                $runner->modifyYamlFile('config/packages/security.yaml', function (array $data) {
+                $runner->modifyYamlFile('config/packages/security.yaml', static function (array $data) {
                     $data['security']['firewalls']['main']['custom_authenticator'] = 'App\\Security\\StubAuthenticator';
 
                     return $data;

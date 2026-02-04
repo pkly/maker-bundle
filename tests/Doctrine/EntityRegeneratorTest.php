@@ -79,7 +79,7 @@ class EntityRegeneratorTest extends TestCase
         $autoloaderUtil = $this->createMock(AutoloaderUtil::class);
         $autoloaderUtil->expects($this->any())
             ->method('getPathForFutureClass')
-            ->willReturnCallback(function ($className) use ($tmpDir, $targetDirName) {
+            ->willReturnCallback(static function ($className) use ($tmpDir, $targetDirName) {
                 $shortClassName = str_replace('Symfony\Bundle\MakerBundle\Tests\tmp\\'.$targetDirName.'\src\\', '', $className);
 
                 // strip the App\, change \ to / and add .php

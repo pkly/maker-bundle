@@ -49,7 +49,7 @@ class MakeAuthenticatorTest extends MakerTestCase
 
         yield 'auth_empty_multiple_firewalls' => [$this->createMakerTest()
             ->run(function (MakerTestRunner $runner) {
-                $runner->modifyYamlFile('config/packages/security.yaml', function (array $config) {
+                $runner->modifyYamlFile('config/packages/security.yaml', static function (array $config) {
                     $config['security']['firewalls']['second']['lazy'] = true;
 
                     return $config;
@@ -80,7 +80,7 @@ class MakeAuthenticatorTest extends MakerTestCase
                     'src/Security/BlankAuthenticator.php'
                 );
 
-                $runner->modifyYamlFile('config/packages/security.yaml', function (array $config) {
+                $runner->modifyYamlFile('config/packages/security.yaml', static function (array $config) {
                     $config['security']['firewalls']['main']['custom_authenticator'] = 'App\Security\BlankAuthenticator';
 
                     return $config;
@@ -112,7 +112,7 @@ class MakeAuthenticatorTest extends MakerTestCase
                     'src/Security/BlankAuthenticator.php'
                 );
 
-                $runner->modifyYamlFile('config/packages/security.yaml', function (array $config) {
+                $runner->modifyYamlFile('config/packages/security.yaml', static function (array $config) {
                     $config['security']['firewalls']['second'] = ['lazy' => true, 'custom_authenticator' => 'App\Security\BlankAuthenticator'];
 
                     return $config;
@@ -358,7 +358,7 @@ class MakeAuthenticatorTest extends MakerTestCase
         );
 
         // plaintext password: needed for entities, simplifies overall
-        $runner->modifyYamlFile('config/packages/security.yaml', function (array $config) {
+        $runner->modifyYamlFile('config/packages/security.yaml', static function (array $config) {
             if (isset($config['when@test']['security']['password_hashers'])) {
                 $config['when@test']['security']['password_hashers'] = [PasswordAuthenticatedUserInterface::class => 'plaintext'];
 

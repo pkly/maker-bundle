@@ -46,7 +46,7 @@ final class MakerFileLinkFormatterTest extends TestCase
                 $fileLinkFormatter = $this->createMock(LegacyFileLinkFormatter::class);
             }
 
-            $return = $linkFormatterReturnsLink ? $this->returnCallback(function ($path, $line) {
+            $return = $linkFormatterReturnsLink ? $this->returnCallback(static function ($path, $line) {
                 return \sprintf('subl://open?url=file://%s&line=%d', $path, $line);
             }) : $this->returnValue(false);
             $fileLinkFormatter

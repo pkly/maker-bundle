@@ -128,7 +128,7 @@ class MakeUserTest extends MakerTestCase
             'tests/GeneratedUserTest.php'
         );
 
-        $runner->modifyYamlFile('config/packages/security.yaml', function (array $config) {
+        $runner->modifyYamlFile('config/packages/security.yaml', static function (array $config) {
             $config['security']['firewalls']['main']['custom_authenticator'] = 'App\Security\AutomaticAuthenticator';
 
             return $config;
@@ -136,7 +136,7 @@ class MakeUserTest extends MakerTestCase
 
         // make a service accessible in the test
         // (the real one is removed as it's never used in the app)
-        $runner->modifyYamlFile('config/services.yaml', function (array $config) {
+        $runner->modifyYamlFile('config/services.yaml', static function (array $config) {
             $config['services']['test_password_hasher'] = [
                 'public' => true,
                 'alias' => UserPasswordHasherInterface::class,

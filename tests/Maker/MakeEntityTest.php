@@ -28,7 +28,7 @@ class MakeEntityTest extends MakerTestCase
     private function createMakeEntityTest(bool $withDatabase = true): MakerTestDetails
     {
         return $this->createMakerTest()
-            ->preRun(function (MakerTestRunner $runner) use ($withDatabase) {
+            ->preRun(static function (MakerTestRunner $runner) use ($withDatabase) {
                 if ($withDatabase) {
                     $runner->configureDatabase();
                 }
@@ -45,7 +45,7 @@ class MakeEntityTest extends MakerTestCase
         }
 
         return $this->createMakeEntityTest()
-            ->preRun(function (MakerTestRunner $runner) {
+            ->preRun(static function (MakerTestRunner $runner) {
                 // installed manually later so that the compatibility check can run first
                 $runner->runProcess('composer require symfony/ux-turbo');
             })
@@ -679,7 +679,7 @@ class MakeEntityTest extends MakerTestCase
         ];
 
         yield 'it_generates_entity_with_turbo_without_mercure' => [$this->createMakeEntityTest()
-            ->preRun(function (MakerTestRunner $runner) {
+            ->preRun(static function (MakerTestRunner $runner) {
                 $runner->runProcess('composer require symfony/ux-turbo');
             })
             ->addExtraDependencies('twig')
