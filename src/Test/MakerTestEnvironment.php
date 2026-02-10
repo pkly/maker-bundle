@@ -269,12 +269,6 @@ final class MakerTestEnvironment
         MakerTestProcess::create('composer require phpunit:1.1.* browser-kit symfony/css-selector --prefer-dist --no-progress --no-suggest', $this->flexPath)
                         ->run();
 
-        if (!$this->isWindows) {
-            $this->fs->remove($this->flexPath.'/vendor/symfony/phpunit-bridge');
-
-            $this->fs->symlink($rootPath.'/vendor/symfony/phpunit-bridge', $this->flexPath.'/vendor/symfony/phpunit-bridge');
-        }
-
         $replacements = [
             // temporarily ignoring indirect deprecations - see #237
             [
