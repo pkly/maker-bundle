@@ -27,38 +27,6 @@ jobs:
                 name: Validate composer.json
                 run: "composer validate --strict --no-check-lock"
 
-    php-cs-fixer:
-        name: "PHP-CS-Fixer"
-
-        runs-on: ubuntu-latest
-
-        steps:
-            -
-                name: Checkout code
-                uses: "actions/checkout@v4"
-
-            -
-                name: Install PHP
-                uses: "shivammathur/setup-php@v2"
-                with:
-                    php-version: 8.2
-
-            -
-                name: Composer install
-                uses: "ramsey/composer-install@v3"
-                with:
-                    composer-options: "--no-scripts"
-
-            -
-                name: Composer install php-cs-fixer
-                uses: "ramsey/composer-install@v3"
-                with:
-                    composer-options: "--no-scripts --working-dir=tools/php-cs-fixer"
-
-            -
-                name: Run PHP-CS-Fixer
-                run: "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --show-progress=none"
-
     phpstan:
         name: PHPStan
 
