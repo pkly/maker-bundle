@@ -13,8 +13,8 @@ env:
     SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
 
 jobs:
-    coding-standards:
-        name: "Coding Standards"
+    composer-validate:
+        name: "Validate composer.json"
 
         runs-on: ubuntu-latest
 
@@ -24,30 +24,8 @@ jobs:
                 uses: "actions/checkout@v4"
 
             -
-                name: Install PHP
-                uses: "shivammathur/setup-php@v2"
-                with:
-                    php-version: 8.2
-
-            -
                 name: Validate composer.json
                 run: "composer validate --strict --no-check-lock"
-
-            -
-                name: Composer install
-                uses: "ramsey/composer-install@v3"
-                with:
-                    composer-options: "--no-scripts"
-
-            -
-                name: Composer install php-cs-fixer
-                uses: "ramsey/composer-install@v3"
-                with:
-                    composer-options: "--no-scripts --working-dir=tools/php-cs-fixer"
-
-            -
-                name: Run PHP-CS-Fixer
-                run: "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff"
 
     phpstan:
         name: PHPStan

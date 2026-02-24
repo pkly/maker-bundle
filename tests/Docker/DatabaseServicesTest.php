@@ -11,6 +11,7 @@
 
 namespace Symfony\Bundle\MakerBundle\Tests\Docker;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\MakerBundle\Docker\DockerDatabaseServices;
 use Symfony\Bundle\MakerBundle\Exception\RuntimeCommandException;
@@ -20,7 +21,7 @@ use Symfony\Bundle\MakerBundle\Exception\RuntimeCommandException;
  */
 final class DatabaseServicesTest extends TestCase
 {
-    public function testExceptionThrownWithInvalidDatabaseProvided(): void
+    public function testExceptionThrownWithInvalidDatabaseProvided()
     {
         $this->expectException(RuntimeCommandException::class);
         $this->expectExceptionMessage('foo is not a valid / supported docker database type.');
@@ -28,7 +29,7 @@ final class DatabaseServicesTest extends TestCase
         DockerDatabaseServices::getDatabaseSkeleton('foo', 'latest');
     }
 
-    public function mixedNameDataProvider(): \Generator
+    public static function mixedNameDataProvider(): \Generator
     {
         yield ['mariadb'];
         yield ['mysql'];
@@ -38,7 +39,8 @@ final class DatabaseServicesTest extends TestCase
     /**
      * @dataProvider mixedNameDataProvider
      */
-    public function testSkeletonReturnArrayForDesiredDatabase(string $databaseName): void
+    #[DataProvider('mixedNameDataProvider')]
+    public function testSkeletonReturnArrayForDesiredDatabase(string $databaseName)
     {
         $result = DockerDatabaseServices::getDatabaseSkeleton($databaseName, 'latest');
 
@@ -49,7 +51,8 @@ final class DatabaseServicesTest extends TestCase
     /**
      * @dataProvider mixedNameDataProvider
      */
-    public function testGetDefaultPorts(string $databaseName): void
+    #[DataProvider('mixedNameDataProvider')]
+    public function testGetDefaultPorts(string $databaseName)
     {
         $result = DockerDatabaseServices::getDefaultPorts($databaseName);
 
@@ -59,7 +62,8 @@ final class DatabaseServicesTest extends TestCase
     /**
      * @dataProvider mixedNameDataProvider
      */
-    public function testSuggestedVersion(string $databaseName): void
+    #[DataProvider('mixedNameDataProvider')]
+    public function testSuggestedVersion(string $databaseName)
     {
         $result = DockerDatabaseServices::getSuggestedServiceVersion($databaseName);
 

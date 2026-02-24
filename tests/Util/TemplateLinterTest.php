@@ -24,27 +24,27 @@ use Symfony\Component\Process\Process;
  */
 final class TemplateLinterTest extends TestCase
 {
-    public function testExceptionBinaryPathDoesntExist(): void
+    public function testExceptionBinaryPathDoesntExist()
     {
         $this->expectExceptionMessage('The MAKER_PHP_CS_FIXER_BINARY_PATH provided: /some/bad/path does not exist.');
 
         new TemplateLinter(phpCsFixerBinaryPath: '/some/bad/path');
     }
 
-    public function testExceptionThrownIfConfigPathDoesntExist(): void
+    public function testExceptionThrownIfConfigPathDoesntExist()
     {
         $this->expectExceptionMessage('The MAKER_PHP_CS_FIXER_CONFIG_PATH provided: /bad/config/path does not exist.');
 
         new TemplateLinter(phpCsFixerConfigPath: '/bad/config/path');
     }
 
-    public function testPhpCsFixerVersion(): void
+    public function testPhpCsFixerVersion()
     {
         $this->markTestSkippedOnWindows();
 
-        $fixerPath = \sprintf('%s/src/Resources/bin/php-cs-fixer-v%s.phar', \dirname(__DIR__, 2), TemplateLinter::BUNDLED_PHP_CS_FIXER_VERSION);
+        $fixerPath = \sprintf('%s/src/Resources/bin/php-cs-fixer.phar', \dirname(__DIR__, 2));
 
-        $process = Process::fromShellCommandline(\sprintf('%s -V', $fixerPath));
+        $process = Process::fromShellCommandline(\sprintf('PHP_CS_FIXER_IGNORE_ENV=1 %s -V', $fixerPath));
 
         $process->run();
 

@@ -22,10 +22,10 @@ class MakeValidatorTest extends MakerTestCase
         return MakeValidator::class;
     }
 
-    public function getTestDetails(): \Generator
+    public static function getTestDetails(): \Generator
     {
-        yield 'it_makes_validator' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_validator' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // validator name

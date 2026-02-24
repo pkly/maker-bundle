@@ -29,7 +29,7 @@ class ComposerAutoloaderFinderTest extends TestCase
         self::$getSplAutoloadFunctions = 'spl_autoload_functions';
     }
 
-    public function providerNamespaces(): \Generator
+    public static function providerNamespaces(): \Generator
     {
         yield 'Configured PSR-0' => [rtrim(static::$rootNamespace, '\\'), null];
         yield 'Configured PSR-4' => [null, static::$rootNamespace];
@@ -51,7 +51,7 @@ class ComposerAutoloaderFinderTest extends TestCase
     {
         $this->expectException(\Exception::class);
 
-        self::$getSplAutoloadFunctions = function () {
+        self::$getSplAutoloadFunctions = static function () {
             return [];
         };
 
@@ -65,7 +65,7 @@ class ComposerAutoloaderFinderTest extends TestCase
      */
     private function setupAutoloadFunctions($psr0, $psr4)
     {
-        self::$getSplAutoloadFunctions = function () use ($psr0, $psr4) {
+        self::$getSplAutoloadFunctions = static function () use ($psr0, $psr4) {
             $loader = new ClassLoader();
             if ($psr0) {
                 $loader->add($psr0, __DIR__);

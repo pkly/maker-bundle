@@ -11,6 +11,7 @@
 
 namespace Symfony\Bundle\MakerBundle\Tests\Security;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
 use Symfony\Bundle\MakerBundle\Security\SecurityConfigUpdater;
@@ -29,7 +30,8 @@ class SecurityConfigUpdaterTest extends TestCase
     /**
      * @dataProvider getUserClassTests
      */
-    public function testUpdateForUserClass(UserClassConfiguration $userConfig, string $expectedSourceFilename, string $startingSourceFilename = 'simple_security.yaml'): void
+    #[DataProvider('getUserClassTests')]
+    public function testUpdateForUserClass(UserClassConfiguration $userConfig, string $expectedSourceFilename, string $startingSourceFilename = 'simple_security.yaml')
     {
         $this->createLogger();
 
@@ -48,7 +50,7 @@ class SecurityConfigUpdaterTest extends TestCase
         $this->assertSame($expectedSource, $actualSource);
     }
 
-    public function getUserClassTests(): \Generator
+    public static function getUserClassTests(): \Generator
     {
         yield 'entity_email_password' => [
             new UserClassConfiguration(true, 'email', true),
@@ -104,7 +106,8 @@ class SecurityConfigUpdaterTest extends TestCase
     /**
      * @dataProvider getAuthenticatorTests
      */
-    public function testUpdateForAuthenticator(string $firewallName, $entryPoint, string $expectedSourceFilename, string $startingSourceFilename, bool $logoutSetup, bool $supportRememberMe, bool $alwaysRememberMe): void
+    #[DataProvider('getAuthenticatorTests')]
+    public function testUpdateForAuthenticator(string $firewallName, $entryPoint, string $expectedSourceFilename, string $startingSourceFilename, bool $logoutSetup, bool $supportRememberMe, bool $alwaysRememberMe)
     {
         $this->createLogger();
 
@@ -116,7 +119,7 @@ class SecurityConfigUpdaterTest extends TestCase
         $this->assertSame($expectedSource, $actualSource);
     }
 
-    public function getAuthenticatorTests(): \Generator
+    public static function getAuthenticatorTests(): \Generator
     {
         yield 'empty_source' => [
             'main',
@@ -199,7 +202,7 @@ class SecurityConfigUpdaterTest extends TestCase
         ];
     }
 
-    public function testUpdateForFormLogin(): void
+    public function testUpdateForFormLogin()
     {
         $this->createLogger();
 
@@ -214,7 +217,7 @@ class SecurityConfigUpdaterTest extends TestCase
         );
     }
 
-    public function testUpdateForJsonLogin(): void
+    public function testUpdateForJsonLogin()
     {
         $this->createLogger();
 
@@ -229,7 +232,7 @@ class SecurityConfigUpdaterTest extends TestCase
         );
     }
 
-    public function testUpdateForLogout(): void
+    public function testUpdateForLogout()
     {
         $this->createLogger();
 
@@ -250,7 +253,7 @@ class SecurityConfigUpdaterTest extends TestCase
             return;
         }
 
-        $this->ysmLogger = new Logger(LogLevel::DEBUG, 'php://stdout', function (string $level, string $message, array $context) {
+        $this->ysmLogger = new Logger(LogLevel::DEBUG, 'php://stdout', static function (string $level, string $message, array $context) {
             $maxLen = max(array_map('strlen', array_keys($context)));
 
             foreach ($context as $key => $val) {

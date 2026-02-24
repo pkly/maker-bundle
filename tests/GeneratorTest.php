@@ -11,6 +11,7 @@
 
 namespace Symfony\Bundle\MakerBundle\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\MakerBundle\FileManager;
 use Symfony\Bundle\MakerBundle\Generator;
@@ -20,7 +21,8 @@ class GeneratorTest extends TestCase
     /**
      * @dataProvider getClassNameDetailsTests
      */
-    public function testCreateClassNameDetails(string $name, string $prefix, string $suffix, string $expectedFullClassName, string $expectedRelativeClassName): void
+    #[DataProvider('getClassNameDetailsTests')]
+    public function testCreateClassNameDetails(string $name, string $prefix, string $suffix, string $expectedFullClassName, string $expectedRelativeClassName)
     {
         $fileManager = $this->createMock(FileManager::class);
         $fileManager->expects($this->any())
@@ -35,7 +37,7 @@ class GeneratorTest extends TestCase
         $this->assertSame($expectedRelativeClassName, $classNameDetails->getRelativeName());
     }
 
-    public function getClassNameDetailsTests(): \Generator
+    public static function getClassNameDetailsTests(): \Generator
     {
         yield 'simple_class' => [
             'foo',

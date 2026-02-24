@@ -22,12 +22,12 @@ class MakeSerializerEncoderTest extends MakerTestCase
         return MakeSerializerEncoder::class;
     }
 
-    public function getTestDetails(): \Generator
+    public static function getTestDetails(): \Generator
     {
-        yield 'it_makes_serializer_encoder' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_serializer_encoder' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 if (70000 >= $runner->getSymfonyVersion()) {
-                    $this->markTestSkipped('Legacy Symfony 6.4 Test');
+                    self::markTestSkipped('Legacy Symfony 6.4 Test');
                 }
                 $runner->runMaker(
                     [
@@ -39,17 +39,17 @@ class MakeSerializerEncoderTest extends MakerTestCase
                 );
 
                 self::assertStringContainsString(
-                    needle: 'public function decode(string $data, string $format, array $context = []): mixed',
-                    haystack: file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
+                    'public function decode(string $data, string $format, array $context = []): mixed',
+                    file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
                 );
             }),
         ];
 
         /* @legacy - Remove when MakerBundle no longer supports Symfony 6.4 */
-        yield 'it_makes_serializer_encoder_legacy' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_serializer_encoder_legacy' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 if (70000 < $runner->getSymfonyVersion()) {
-                    $this->markTestSkipped('Legacy Symfony 6.4 Test');
+                    self::markTestSkipped('Legacy Symfony 6.4 Test');
                 }
                 $runner->runMaker(
                     [
@@ -61,8 +61,8 @@ class MakeSerializerEncoderTest extends MakerTestCase
                 );
 
                 self::assertStringNotContainsString(
-                    needle: 'public function decode(string $data, string $format, array $context = []): mixed',
-                    haystack: file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
+                    'public function decode(string $data, string $format, array $context = []): mixed',
+                    file_get_contents($runner->getPath('src/Serializer/FooBarEncoder.php'))
                 );
             }),
         ];

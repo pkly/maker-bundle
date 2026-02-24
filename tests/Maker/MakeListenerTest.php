@@ -20,10 +20,10 @@ class MakeListenerTest extends MakerTestCase
     private const EXPECTED_SUBSCRIBER_PATH = __DIR__.'/../../tests/fixtures/make-listener/tests/EventSubscriber/';
     private const EXPECTED_LISTENER_PATH = __DIR__.'/../../tests/fixtures/make-listener/tests/EventListener/';
 
-    public function getTestDetails(): \Generator
+    public static function getTestDetails(): \Generator
     {
-        yield 'it_make_subscriber_without_conventional_name' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_make_subscriber_without_conventional_name' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         'foo',
@@ -41,8 +41,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_make_listener_without_conventional_name' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_make_listener_without_conventional_name' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         'foo',
@@ -60,8 +60,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_subscriber_for_known_event' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_subscriber_for_known_event' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // subscriber name
@@ -78,8 +78,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_subscriber_for_custom_event_class' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_subscriber_for_custom_event_class' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // subscriber name
@@ -96,8 +96,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_subscriber_for_unknown_event_class' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_subscriber_for_unknown_event_class' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // subscriber name
@@ -114,8 +114,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_listener_for_known_event' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_listener_for_known_event' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // listener name
@@ -132,8 +132,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_listener_for_custom_event_class' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_listener_for_custom_event_class' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // listener name
@@ -150,8 +150,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_listener_for_unknown_event_class' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_listener_for_unknown_event_class' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // listener name
@@ -168,8 +168,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_listener_for_known_event_by_id' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_listener_for_known_event_by_id' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // listener name
@@ -187,8 +187,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_listener_for_known_event_by_short_class_name' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_listener_for_known_event_by_short_class_name' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // listener name
@@ -206,8 +206,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_listener_for_known_event_by_id_with_2_letters_typo' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_listener_for_known_event_by_id_with_2_letters_typo' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // listener name
@@ -225,8 +225,8 @@ class MakeListenerTest extends MakerTestCase
             }),
         ];
 
-        yield 'it_makes_listener_for_known_event_by_short_class_name_with_2_letters_typo' => [$this->createMakerTest()
-            ->run(function (MakerTestRunner $runner) {
+        yield 'it_makes_listener_for_known_event_by_short_class_name_with_2_letters_typo' => [self::buildMakerTest()
+            ->run(static function (MakerTestRunner $runner) {
                 $runner->runMaker(
                     [
                         // listener name

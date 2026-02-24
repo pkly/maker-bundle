@@ -11,6 +11,7 @@
 
 namespace Symfony\Bundle\MakerBundle\Tests\Util;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\MakerBundle\Util\MakerFileLinkFormatter;
 use Symfony\Component\ErrorHandler\ErrorRenderer\FileLinkFormatter;
@@ -18,7 +19,7 @@ use Symfony\Component\HttpKernel\Debug\FileLinkFormatter as LegacyFileLinkFormat
 
 final class MakerFileLinkFormatterTest extends TestCase
 {
-    public function provideMakeLinkedPath(): \Generator
+    public static function provideMakeLinkedPath(): \Generator
     {
         yield 'no_formatter' => [false, false, './my/relative/path'];
         yield 'with_formatter' => [
@@ -32,7 +33,8 @@ final class MakerFileLinkFormatterTest extends TestCase
     /**
      * @dataProvider provideMakeLinkedPath
      */
-    public function testMakeLinkedPath(bool $withFileLinkFormatter, bool $linkFormatterReturnsLink, string $expectedOutput): void
+    #[DataProvider('provideMakeLinkedPath')]
+    public function testMakeLinkedPath(bool $withFileLinkFormatter, bool $linkFormatterReturnsLink, string $expectedOutput)
     {
         if (getenv('MAKER_DISABLE_FILE_LINKS')) {
             $this->markTestSkipped();
@@ -46,7 +48,7 @@ final class MakerFileLinkFormatterTest extends TestCase
                 $fileLinkFormatter = $this->createMock(LegacyFileLinkFormatter::class);
             }
 
-            $return = $linkFormatterReturnsLink ? $this->returnCallback(function ($path, $line) {
+            $return = $linkFormatterReturnsLink ? $this->returnCallback(static function ($path, $line) {
                 return \sprintf('subl://open?url=file://%s&line=%d', $path, $line);
             }) : $this->returnValue(false);
             $fileLinkFormatter

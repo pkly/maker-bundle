@@ -21,7 +21,7 @@ use Symfony\Bundle\MakerBundle\Util\PhpCompatUtil;
  */
 class PhpCompatUtilTest extends TestCase
 {
-    public function testFallBackToPhpVersionWithoutLockFile(): void
+    public function testFallBackToPhpVersionWithoutLockFile()
     {
         $mockFileManager = $this->createMock(FileManager::class);
         $mockFileManager
@@ -49,7 +49,7 @@ class PhpCompatUtilTest extends TestCase
         self::assertSame(\PHP_VERSION, $result);
     }
 
-    public function testWithoutPlatformVersionSet(): void
+    public function testWithoutPlatformVersionSet()
     {
         $mockFileManager = $this->mockFileManager('{"platform-overrides": {}}');
 

@@ -11,6 +11,7 @@
 
 namespace Symfony\Bundle\MakerBundle\Tests\Util;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\MakerBundle\MakerBundle;
 use Symfony\Bundle\MakerBundle\Util\ClassSource\Model\ClassData;
@@ -21,7 +22,7 @@ use Symfony\Bundle\MakerBundle\Util\TemplateComponentGenerator;
  */
 class TemplateComponentGeneratorTest extends TestCase
 {
-    public function testRouteAttributes(): void
+    public function testRouteAttributes()
     {
         $generator = new TemplateComponentGenerator(false, false, 'App');
 
@@ -33,7 +34,8 @@ class TemplateComponentGeneratorTest extends TestCase
     /**
      * @dataProvider routeMethodDataProvider
      */
-    public function testRouteMethods(string $expected, array $methods): void
+    #[DataProvider('routeMethodDataProvider')]
+    public function testRouteMethods(string $expected, array $methods)
     {
         $generator = new TemplateComponentGenerator(false, false, 'App');
 
@@ -44,7 +46,7 @@ class TemplateComponentGeneratorTest extends TestCase
         ));
     }
 
-    public function routeMethodDataProvider(): \Generator
+    public static function routeMethodDataProvider(): \Generator
     {
         yield ["    #[Route('/', name: 'app_home', methods: ['GET'])]\n", ['GET']];
         yield ["    #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]\n", ['GET', 'POST']];
@@ -53,7 +55,8 @@ class TemplateComponentGeneratorTest extends TestCase
     /**
      * @dataProvider routeIndentationDataProvider
      */
-    public function testRouteIndentation(string $expected): void
+    #[DataProvider('routeIndentationDataProvider')]
+    public function testRouteIndentation(string $expected)
     {
         $generator = new TemplateComponentGenerator(false, false, 'App');
 
@@ -65,7 +68,7 @@ class TemplateComponentGeneratorTest extends TestCase
         ));
     }
 
-    public function routeIndentationDataProvider(): \Generator
+    public static function routeIndentationDataProvider(): \Generator
     {
         yield ["#[Route('/', name: 'app_home')]\n"];
     }
@@ -73,7 +76,8 @@ class TemplateComponentGeneratorTest extends TestCase
     /**
      * @dataProvider routeTrailingNewLineDataProvider
      */
-    public function testRouteTrailingNewLine(string $expected): void
+    #[DataProvider('routeTrailingNewLineDataProvider')]
+    public function testRouteTrailingNewLine(string $expected)
     {
         $generator = new TemplateComponentGenerator(false, false, 'App');
 
@@ -86,7 +90,7 @@ class TemplateComponentGeneratorTest extends TestCase
         ));
     }
 
-    public function routeTrailingNewLineDataProvider(): \Generator
+    public static function routeTrailingNewLineDataProvider(): \Generator
     {
         yield ["#[Route('/', name: 'app_home')]", true];
     }
@@ -94,7 +98,8 @@ class TemplateComponentGeneratorTest extends TestCase
     /**
      * @dataProvider finalClassDataProvider
      */
-    public function testGetFinalClassDeclaration(bool $finalClass, bool $finalEntity, bool $isEntity, string $expectedResult): void
+    #[DataProvider('finalClassDataProvider')]
+    public function testGetFinalClassDeclaration(bool $finalClass, bool $finalEntity, bool $isEntity, string $expectedResult)
     {
         $generator = new TemplateComponentGenerator($finalClass, $finalEntity, 'App');
 
@@ -105,7 +110,7 @@ class TemplateComponentGeneratorTest extends TestCase
         self::assertSame(\sprintf('%sclass MakerBundle', $expectedResult), $classData->getClassDeclaration());
     }
 
-    public function finalClassDataProvider(): \Generator
+    public static function finalClassDataProvider(): \Generator
     {
         yield 'Not Final Class' => [false, false, false, ''];
         yield 'Not Final Class w/ Entity' => [false, true, false, ''];
@@ -117,7 +122,7 @@ class TemplateComponentGeneratorTest extends TestCase
         yield 'Final Entity w/ Class' => [true, true, true, 'final '];
     }
 
-    public function testConfiguresClassDataWithRootNamespace(): void
+    public function testConfiguresClassDataWithRootNamespace()
     {
         $generator = new TemplateComponentGenerator(false, false, 'MakerTest');
 

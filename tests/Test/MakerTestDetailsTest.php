@@ -25,10 +25,10 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class MakerTestDetailsTest extends TestCase
 {
-    public function testAddExtraDependencies(): void
+    public function testAddExtraDependencies()
     {
-        $details = new MakerTestDetails($this->createMock(MakerInterface::class));
-
+        $details = new MakerTestDetails();
+        $details->setMaker($this->createMock(MakerInterface::class));
         $details->addExtraDependencies('twig');
 
         self::assertSame(['twig'], $details->getExtraDependencies());
@@ -38,10 +38,10 @@ class MakerTestDetailsTest extends TestCase
         self::assertSame(['twig', 'ux', 'mercure'], $details->getExtraDependencies());
     }
 
-    public function testAddRequiredPackageVersions(): void
+    public function testAddRequiredPackageVersions()
     {
-        $details = new MakerTestDetails($this->createMock(MakerInterface::class));
-
+        $details = new MakerTestDetails();
+        $details->setMaker($this->createMock(MakerInterface::class));
         $details->addRequiredPackageVersion('twig', '4.x');
 
         self::assertSame([['name' => 'twig', 'version_constraint' => '4.x']], $details->getRequiredPackageVersions());
@@ -53,10 +53,10 @@ class MakerTestDetailsTest extends TestCase
         ], $details->getRequiredPackageVersions());
     }
 
-    public function testGetDependencies(): void
+    public function testGetDependencies()
     {
-        $details = new MakerTestDetails(new TestMakerFixture());
-
+        $details = new MakerTestDetails();
+        $details->setMaker(new TestMakerFixture());
         $details->addExtraDependencies('twig');
 
         self::assertSame(['security', 'router', 'twig'], $details->getDependencies());
